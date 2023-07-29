@@ -14,8 +14,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "unix-to-utc.helloWorld",
+        "command": "unix-to-utc.HelloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "unix-to-utc.conversion",
+        "title": "Convert"
       }
     ]
   },
