@@ -18,7 +18,11 @@
         "title": "Hello World"
       },
       {
-        "command": "unix-to-utc.conversion",
+        "command": "unix-to-utc.replace",
+        "title": "Replace"
+      },
+      {
+        "command": "unix-to-utc.convert",
         "title": "Convert"
       }
     ]
