@@ -22,11 +22,11 @@
         "title": "Replace Datetime with Unix Time"
       },
       {
-        "command": "unix-to-utc.convert_unix",
+        "command": "unix-to-utc.show_datetime",
         "title": "Show Unix Time to Datetime"
       },
       {
-        "command": "unix-to-utc.convert_datetime",
+        "command": "unix-to-utc.show_unix",
         "title": "Show Datetime to Unix Time"
       }
     ]
