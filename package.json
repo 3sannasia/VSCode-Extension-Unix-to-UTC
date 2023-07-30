@@ -14,16 +14,20 @@
   "contributes": {
     "commands": [
       {
-        "command": "unix-to-utc.HelloWorld",
-        "title": "Hello World"
+        "command": "unix-to-utc.replace_unix",
+        "title": "Replace Unix Time with Datetime"
       },
       {
-        "command": "unix-to-utc.replace",
-        "title": "Replace"
+        "command": "unix-to-utc.replace_datetime",
+        "title": "Replace Datetime with Unix Time"
       },
       {
-        "command": "unix-to-utc.convert",
-        "title": "Convert"
+        "command": "unix-to-utc.convert_unix",
+        "title": "Show Unix Time to Datetime"
+      },
+      {
+        "command": "unix-to-utc.convert_datetime",
+        "title": "Show Datetime to Unix Time"
       }
     ]
   },
