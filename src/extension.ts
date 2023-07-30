@@ -125,8 +125,8 @@ function showDatetimeFromUnix(context: vscode.ExtensionContext): void {
         vscode.window.showInformationMessage(datetime, "Copy").then((value) => {
           if (value === "Copy") {
             vscode.env.clipboard.writeText(datetime);
+            vscode.window.showInformationMessage(`Copied ${datetime}`);
           }
-          vscode.window.showInformationMessage(`Copied ${datetime}`);
         });
       }
     }
@@ -134,7 +134,6 @@ function showDatetimeFromUnix(context: vscode.ExtensionContext): void {
   context.subscriptions.push(convert);
 }
 
-// FIX
 function replaceDatetimeWithUnix(context: vscode.ExtensionContext) {
   const replace_datetime = vscode.commands.registerCommand(
     "unix-to-utc.replace_datetime",
@@ -145,10 +144,24 @@ function replaceDatetimeWithUnix(context: vscode.ExtensionContext) {
         const document = editor.document;
         const selection = editor.selection;
 
-        const text = document.getText(selection);
+        var text = document.getText(selection);
+
+        if (text.at(0) == '"' && text.at(text.length - 1) == '"') {
+          text = text.slice(1, text.length - 1);
+        }
+
+        const date = DatetimeToDate(text);
+        const unix = DateToUnix(date);
+
+        if (isNaN(unix)) {
+          vscode.window.showInformationMessage(
+            "Please select a valid datetime!"
+          );
+          return;
+        }
 
         editor.edit((editBuilder) => {
-          editBuilder.replace(selection, "to_replace");
+          editBuilder.replace(selection, unix.toString());
         });
       }
     }
@@ -156,11 +169,48 @@ function replaceDatetimeWithUnix(context: vscode.ExtensionContext) {
   context.subscriptions.push(replace_datetime);
 }
 
-function showUnixFromUTC(context: vscode.ExtensionContext) {}
+function showUnixFromUTC(context: vscode.ExtensionContext) {
+  const convert = vscode.commands.registerCommand(
+    "unix-to-utc.show_unix",
+    () => {
+      const editor = vscode.window.activeTextEditor;
+
+      if (editor) {
+        const document = editor.document;
+        const selection = editor.selection;
+
+        var text = document.getText(selection);
+
+        if (text.at(0) == '"' && text.at(text.length - 1) == '"') {
+          text = text.slice(1, text.length - 1);
+        }
+
+        const date = DatetimeToDate(text);
+        const unix = DateToUnix(date);
+
+        if (isNaN(unix)) {
+          vscode.window.showInformationMessage(
+            "Please select a valid datetime!"
+          );
+          return;
+        }
+        vscode.window
+          .showInformationMessage(unix.toString(), "Copy")
+          .then((value) => {
+            if (value === "Copy") {
+              vscode.env.clipboard.writeText(unix.toString());
+              vscode.window.showInformationMessage(`Copied ${unix}`);
+            }
+          });
+      }
+    }
+  );
+  context.subscriptions.push(convert);
+}
 
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  vscode.window.showInformationMessage("Welcome to unix-to-utc!");
+  vscode.window.showInformationMessage("Unix-to-UTC Activated!");
 
   // Commands to convert between Unix time and Python datetime objects
   replaceUnixWithUTC(context);
@@ -171,4 +221,6 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+  vscode.window.showInformationMessage("Deactivated");
+}

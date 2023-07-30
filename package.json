@@ -15,19 +15,19 @@
     "commands": [
       {
         "command": "unix-to-utc.replace_unix",
-        "title": "Replace Unix Time with Datetime"
+        "title": "(Replace) Unix Time with Datetime"
       },
       {
         "command": "unix-to-utc.replace_datetime",
-        "title": "Replace Datetime with Unix Time"
+        "title": "(Replace) Datetime with Unix Time"
       },
       {
         "command": "unix-to-utc.show_datetime",
-        "title": "Show Unix Time to Datetime"
+        "title": "(Window) Unix Time to Datetime"
       },
       {
         "command": "unix-to-utc.show_unix",
-        "title": "Show Datetime to Unix Time"
+        "title": "(Window) Show Datetime to Unix Time"
       }
     ]
   },
