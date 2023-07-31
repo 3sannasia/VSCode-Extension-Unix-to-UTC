@@ -1,8 +1,13 @@
 {
   "name": "unix-to-utc",
   "displayName": "Unix to UTC",
-  "description": "Convert unix epoch to utc and utc to unix epoch with ease!",
+  "description": "Convert unix time to utc and utc to epoch with ease!",
   "version": "0.0.1",
+  "publisher": "kashsan",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/3sannasia/VSCode-Extension-unix-to-utc.git"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -59,3 +64,4 @@
     "@vscode/test-electron": "^2.3.2"
   }
 }
+
