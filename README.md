@@ -15,12 +15,12 @@ Making time conversion easier and lightweight. The main focus for this extension
 3. Select a unix timestamp and see a copyable datetime message
 
    - "(Window) Unix Time to Datetime" Command
-     ![Unix-to-Datetime](<src/images/Screenshot 2023-07-30 at 8.58.06 PM.png>)
+     ![Unix-to-Datetime](<images/Screenshot 2023-07-30 at 8.58.06 PM.png>)
 
 4. Select a Python Datetime string and see a copyable unix message
 
    - "(Window) Show Datetime to Unix Time
-     ![Datetime-to-Unix](<src/images/Screenshot 2023-07-30 at 8.58.27 PM.png>)
+     ![Datetime-to-Unix](<images/Screenshot 2023-07-30 at 8.58.27 PM.png>)
 
 Let me know of any ideas!
 
