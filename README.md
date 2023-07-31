@@ -22,6 +22,8 @@ Making time conversion easier and lightweight. The main focus for this extension
    - "(Window) Show Datetime to Unix Time
      ![Datetime-to-Unix](<src/images/Screenshot 2023-07-30 at 8.58.27 PM.png>)
 
+Let me know of any ideas!
+
 ## Requirements
 
 Goal is to work on any file
