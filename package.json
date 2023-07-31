@@ -2,7 +2,7 @@
   "name": "unix-to-utc",
   "displayName": "Unix to UTC",
   "description": "Convert unix time to utc and utc to epoch with ease!",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "publisher": "kashsan",
   "icon": "images/icon.png",
   "repository": {
