@@ -10,7 +10,7 @@
     "url": "https://github.com/3sannasia/VSCode-Extension-unix-to-utc.git"
   },
   "engines": {
-    "vscode": "^1.80.0"
+    "vscode": "^1.30.0"
   },
   "categories": [
     "Other"
