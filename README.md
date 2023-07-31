@@ -34,10 +34,6 @@ Must run commands using cmd(ctrl) + shift + p or and finding the command you wan
 
 None at the moment
 
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
 Initial release of unic-to-utc - Future plan: select unix time text to see datetime in a hover
