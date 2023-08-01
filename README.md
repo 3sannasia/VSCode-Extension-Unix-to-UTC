@@ -2,6 +2,8 @@
 
 Making time conversion easier and lightweight. The main focus for this extension is for people using Python datetime objects but need the reliability of unix epoch time. I want to make reading unix timestamps easier and lessen time-based project headaches.
 
+### Dedicated to the Twiley Ranch
+
 ## Features
 
 1. Replace unix timestamps with the datetime string version
@@ -32,7 +34,7 @@ Goal is to work on any file
 
 Must run commands using cmd(ctrl) + shift + p or and finding the command you want
 
-### 1.0.3
+### 1.0.5
 
 Initial release of unic-to-utc - Future plan: select unix time text to see datetime in a hover
 
