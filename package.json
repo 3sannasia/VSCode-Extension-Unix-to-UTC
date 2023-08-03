@@ -18,10 +18,6 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
-    "terminal": {
-      "command": "unix-to-datetime-to-epoch.show_datetime",
-      "when": "editorTextFocus"
-    },
     "menus": {
       "editor/context": [
         {

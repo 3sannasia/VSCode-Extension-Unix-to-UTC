@@ -208,6 +208,40 @@ function showUnixFromUTC(context: vscode.ExtensionContext) {
   context.subscriptions.push(convert);
 }
 
+export function terminalUnixBufferConvert(context: vscode.ExtensionContext) {
+  const customActionCommand = vscode.commands.registerCommand(
+    "unix-to-datetime-to-epoch.customAction",
+    () => {
+      // Replace this custom action with your desired logic to convert the selected text (Unix timestamp) to datetime or epoch
+      // For demonstration purposes, we'll just show the selected text in a message
+
+      const selectedText = vscode.env.clipboard.readText();
+      vscode.window.showInformationMessage(
+        `Selected text from terminal: ${selectedText}`
+      );
+    }
+  );
+
+  context.subscriptions.push(customActionCommand);
+
+  vscode.window.onDidChangeActiveTerminal((terminal) => {
+    if (terminal) {
+      const disposable = vscode.commands.registerTextEditorCommand(
+        "unix-to-datetime-to-epoch.runCustomAction",
+        (editor) => {
+          const selection = editor.selection;
+          const text = editor.document.getText(selection);
+          vscode.commands.executeCommand(
+            "unix-to-datetime-to-epoch.customAction",
+            text
+          );
+        }
+      );
+      context.subscriptions.push(disposable);
+    }
+  });
+}
+
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   vscode.window.showInformationMessage("Unix to Datetime to Epoch");
