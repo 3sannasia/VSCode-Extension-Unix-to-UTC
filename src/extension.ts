@@ -61,7 +61,7 @@ function padZero(num: number): string {
 
 function replaceUnixWithUTC(context: vscode.ExtensionContext): void {
   const replace_unix = vscode.commands.registerCommand(
-    "unix-to-utc.replace_unix",
+    "unix-to-datetime-to-epoch.replace_unix",
     () => {
       const editor = vscode.window.activeTextEditor;
 
@@ -136,7 +136,7 @@ function showDatetimeFromUnix(context: vscode.ExtensionContext): void {
 
 function replaceDatetimeWithUnix(context: vscode.ExtensionContext) {
   const replace_datetime = vscode.commands.registerCommand(
-    "unix-to-utc.replace_datetime",
+    "unix-to-datetime-to-epoch.replace_datetime",
     () => {
       const editor = vscode.window.activeTextEditor;
 
@@ -171,7 +171,7 @@ function replaceDatetimeWithUnix(context: vscode.ExtensionContext) {
 
 function showUnixFromUTC(context: vscode.ExtensionContext) {
   const convert = vscode.commands.registerCommand(
-    "unix-to-utc.show_unix",
+    "unix-to-datetime-to-epoch.show_unix",
     () => {
       const editor = vscode.window.activeTextEditor;
 
@@ -210,14 +210,14 @@ function showUnixFromUTC(context: vscode.ExtensionContext) {
 
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  vscode.window.showInformationMessage("Unix-to-UTC Activated!");
+  vscode.window.showInformationMessage("Unix to Datetime to Epoch");
 
   // Commands to convert between Unix time and Python datetime objects
-  replaceUnixWithUTC(context);
-  replaceDatetimeWithUnix(context);
-
   showUnixFromUTC(context);
   showDatetimeFromUnix(context);
+
+  replaceUnixWithUTC(context);
+  replaceDatetimeWithUnix(context);
 }
 
 // This method is called when your extension is deactivated

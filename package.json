@@ -1,8 +1,8 @@
 {
-  "name": "unix-to-utc",
-  "displayName": "Unix to UTC",
-  "description": "Convert unix time to utc and utc to epoch with ease!",
-  "version": "1.0.5",
+  "name": "unix-to-datetime-to-epoch",
+  "displayName": "Unix to Datetime to Epoch",
+  "description": "Convert unix time to datetime and datetime to epoch with ease!",
+  "version": "1.1.0",
   "publisher": "kashsan",
   "icon": "images/icon.png",
   "repository": {
@@ -18,22 +18,46 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "terminal": {
+      "command": "unix-to-datetime-to-epoch.show_datetime",
+      "when": "editorTextFocus"
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "unix-to-datetime-to-epoch.show_datetime",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "unix-to-datetime-to-epoch.show_unix",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "unix-to-datetime-to-epoch.replace_unix",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "unix-to-datetime-to-epoch.replace_datetime",
+          "when": "editorTextFocus"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "unix-to-utc.replace_unix",
-        "title": "(Replace) Unix Time with Datetime"
-      },
-      {
-        "command": "unix-to-utc.replace_datetime",
-        "title": "(Replace) Datetime with Unix Time"
-      },
-      {
-        "command": "unix-to-utc.show_datetime",
+        "command": "unix-to-datetime-to-epoch.show_datetime",
         "title": "(Window) Unix Time to Datetime"
       },
       {
-        "command": "unix-to-utc.show_unix",
+        "command": "unix-to-datetime-to-epoch.show_unix",
         "title": "(Window) Show Datetime to Unix Time"
+      },
+      {
+        "command": "unix-to-datetime-to-epoch.replace_unix",
+        "title": "(Replace) Unix Time with Datetime"
+      },
+      {
+        "command": "unix-to-datetime-to-epoch.replace_datetime",
+        "title": "(Replace) Datetime with Unix Time"
       }
     ]
   },
