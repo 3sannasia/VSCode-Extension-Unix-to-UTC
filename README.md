@@ -22,9 +22,10 @@ Making time conversion easier and lightweight. The main focus for this extension
    - "(Window) Show Datetime to Unix Time
      ![Datetime-to-Unix](images/Screenshot%202023-07-30%20at%208.58.27%20PM.png)
 
-Future ideas: 
+## Future ideas: 
    - Terminal Option to convert printed unix times
    - Flesh out Python Datetime and FastAPI for wider time input support
+   - Select unix time text to see datetime in a hover
 
 ## Requirements
 
@@ -34,9 +35,7 @@ Goal is to work on any file
 
 Must run commands using cmd(ctrl) + shift + p or and finding the command you want
 
-### 1.0.5
-
-Initial release of unic-to-utc - Future plan: select unix time text to see datetime in a hover
+### 1.0.6
 
 <!--
 ## Following extension guidelines
