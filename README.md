@@ -2,8 +2,6 @@
 
 Making time conversion easier and lightweight. The main focus for this extension is for people using Python datetime objects but need the reliability of unix epoch time. I want to make reading unix timestamps easier and lessen time-based project headaches.
 
-### Dedicated to the Twiley Ranch
-
 ## Features
 
 1. Replace unix timestamps with the datetime string version
@@ -24,7 +22,9 @@ Making time conversion easier and lightweight. The main focus for this extension
    - "(Window) Show Datetime to Unix Time
      ![Datetime-to-Unix](images/Screenshot%202023-07-30%20at%208.58.27%20PM.png)
 
-Let me know of any ideas!
+Future ideas: 
+   - Terminal Option to convert printed unix times
+   - Flesh out Python Datetime and FastAPI for wider time input support
 
 ## Requirements
 
