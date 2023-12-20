@@ -3,3 +3,10 @@ dist
 node_modules
 .vscode-test/
 *.vsix
+
+# Ignore pytest cache
+.pytest_cache/
+
+# Ignore Python cache
+__pycache__/
+
