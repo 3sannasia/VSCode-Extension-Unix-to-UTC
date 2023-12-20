@@ -1,9 +1,25 @@
 from fastapi import FastAPI, Response, status
 from datetime import datetime, timezone
+from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+
+origins = [
+    "http://localhost:8000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # maybe can cache later for efficiency
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 
 # uvicorn datetime_api:app --reload
@@ -44,3 +60,9 @@ async def convert(date, response: Response):
     except ValueError as e:
         response.status_code = status.HTTP_400_BAD_REQUEST
         return {"date": "error"}
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run("datetime_api:app", port=8000, reload=True)
