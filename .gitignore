@@ -10,3 +10,4 @@ node_modules
 # Ignore Python cache
 __pycache__/
 
+.DS_Store
