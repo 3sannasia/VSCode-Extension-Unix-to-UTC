@@ -1,4 +1,6 @@
 Datetime
 FastAPI
 uvicorn
-python-dateutil
+pytest
+starlette
+httpx
