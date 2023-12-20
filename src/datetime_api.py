@@ -12,17 +12,18 @@ async def root():
     return {"message": "Welcome to unix to utc world"}
 
 
+# maybe add ui later, would be cool
+# https://blog.miguelgrinberg.com/post/it-s-time-for-a-change-datetime-utcnow-is-now-deprecated
+
+
 @app.get("/current_unix_timestamp")
 async def current_unix_timestamp():
-    current_utc_time = datetime.utcnow()
-    current_utc_timestamp = current_utc_time.replace(tzinfo=timezone.utc).timestamp()
-    return {"unix": current_utc_timestamp}
+    return {"date": datetime.now(timezone.utc).timestamp()}
 
 
 @app.get("/current_timestamp")
 async def current_unix_timestamp():
-    current_utc_time = datetime.utcnow()
-    return {"unix": current_utc_time}
+    return {"date": datetime.now(timezone.utc)}
 
 
 @app.get("/convert/{date}", status_code=status.HTTP_200_OK)
@@ -31,12 +32,13 @@ async def convert(date, response: Response):
     try:
         if date.isdigit():
             date = int(date)
-            date_time = datetime.utcfromtimestamp(date)
+            date_time = datetime.fromtimestamp(date, timezone.utc)
+
             return {"date": date_time}
         else:
-            # If it's not an integer, assume it's a string in the format '%Y-%m-%dT%H:%M:%S'
             date_object = datetime.fromisoformat(date)
-            utc_timestamp = date_object.replace(tzinfo=timezone.utc).timestamp()
+            print(date_object)
+            utc_timestamp = date_object.timestamp()
             return {"date": utc_timestamp}
 
     except ValueError as e:
