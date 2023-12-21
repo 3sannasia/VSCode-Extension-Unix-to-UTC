@@ -1,3 +1,4 @@
+#!/usr/bin/env pytest
 import pytest
 from datetime import datetime
 from fastapi.testclient import TestClient

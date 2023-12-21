@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from fastapi import FastAPI, Response, status
 from datetime import datetime, timezone
 from fastapi.staticfiles import StaticFiles
@@ -17,9 +19,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# maybe can cache later for efficiency
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 
 # uvicorn datetime_api:app --reload
