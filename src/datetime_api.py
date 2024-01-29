@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# now I can do ./datetime_api.py
 
 from fastapi import FastAPI, Response, status
 from datetime import datetime, timezone
@@ -24,7 +25,7 @@ app.add_middleware(
 # uvicorn datetime_api:app --reload
 @app.get("/")
 async def root():
-    return {"message": "Welcome to unix to utc world"}
+    return {"message": "Welcome to unix to utc timestamp converter"}
 
 
 # maybe add ui later, would be cool
