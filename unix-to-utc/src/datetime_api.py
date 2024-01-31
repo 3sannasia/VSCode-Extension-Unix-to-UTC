@@ -37,7 +37,7 @@ async def current_unix_timestamp():
     return {"date": datetime.now(timezone.utc).timestamp()}
 
 
-@app.get("/current_timestamp")
+@app.get("/current_utc_timestamp")
 async def current_unix_timestamp():
     return {"date": datetime.now(timezone.utc)}
 
