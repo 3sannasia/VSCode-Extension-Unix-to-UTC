@@ -1,9 +1,11 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import { exec } from "node:child_process";
+import { exec, ChildProcess } from "node:child_process";
 require("node-fetch");
 import path from "path";
+
+let api_process: ChildProcess;
 
 async function convertTime(context: vscode.ExtensionContext) {
   let convertTimeCommand = vscode.commands.registerCommand(
@@ -46,14 +48,10 @@ export function activate(context: vscode.ExtensionContext) {
   // This line of code will only be executed once when your extension is activated
   console.log('Congratulations, your extension "unix-to-utc" is now active!');
   console.log("current path is: ", __dirname);
-  const path1 = path.relative(
-    __dirname,
-    "/home/margpi/Desktop/VSCode-Extension-unix-to-utc/unix-to-utc/dist/api.sh"
-  );
-  console.log(path1);
-  const child = exec(
-    path.join(__dirname, "api.sh"),
-    (error, stdout, stderr) => {
+
+  api_process = exec(
+    "python3 " + path.join(__dirname, "datetime_api.py"),
+    (error, stderr) => {
       if (error) {
         console.error(`Error executing script: ${error.message}`);
         return;
@@ -65,6 +63,7 @@ export function activate(context: vscode.ExtensionContext) {
       }
     }
   );
+  console.log("API started...http://127.0.0.1:8001");
 
   convertTime(context);
   getUTCTime(context);
@@ -74,5 +73,7 @@ export function activate(context: vscode.ExtensionContext) {
 // This method is called when your extension is deactivated
 export function deactivate() {
   console.log("deactivated");
-  // const child = exec()
+  if (api_process) {
+    api_process.kill();
+  }
 }
