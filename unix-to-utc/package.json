@@ -9,9 +9,27 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
+    "menus": {
+      "editor/context": [
+        {
+          "command": "unix-to-utc.getUTCTime",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "unix-to-utc.getUnixTime",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "unix-to-utc.convertTime",
+          "when": "editorTextFocus"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "unix-to-utc.convertTime",

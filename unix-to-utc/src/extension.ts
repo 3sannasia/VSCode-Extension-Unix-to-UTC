@@ -21,31 +21,53 @@ async function convertTime(context: vscode.ExtensionContext) {
 async function getUTCTime(context: vscode.ExtensionContext) {
   let getUTCTimeCommand = vscode.commands.registerCommand(
     "unix-to-utc.getUTCTime",
-    () => {
-      vscode.window.showInformationMessage("getUTCTime activated!");
+    async () => {
+      const response = await fetch(
+        "http://127.0.0.1:8001/current_utc_timestamp"
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data: any = await response.json();
+      const cur_utc = data["date"];
+      vscode.window.showInformationMessage(cur_utc, "Copy").then((value) => {
+        if (value === "Copy") {
+          vscode.env.clipboard.writeText(cur_utc);
+          vscode.window.showInformationMessage(`Copied ${cur_utc}`);
+        }
+      });
     }
   );
-  // const response = await fetch("http://127.0.0.1:8000/current_utc_timestamp");
-  // const data = await response.json();
-  // console.log(data);
+
   context.subscriptions.push(getUTCTimeCommand);
 }
 
-function getUnixTime(context: vscode.ExtensionContext) {
+async function getUnixTime(context: vscode.ExtensionContext) {
   let getUnixTimeCommand = vscode.commands.registerCommand(
     "unix-to-utc.getUnixTime",
-    () => {
-      vscode.window.showInformationMessage("getUnixTime activated!");
+    async () => {
+      const response = await fetch(
+        "http://127.0.0.1:8001/current_unix_timestamp"
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data: any = await response.json();
+      const cur_unix = data["date"].toString();
+      vscode.window.showInformationMessage(cur_unix, "Copy").then((value) => {
+        if (value === "Copy") {
+          vscode.env.clipboard.writeText(cur_unix);
+          vscode.window.showInformationMessage(`Copied ${cur_unix}`);
+        }
+      });
     }
   );
   context.subscriptions.push(getUnixTimeCommand);
 }
 
 // This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  // Use the console to output diagnostic information (console.log) and errors (console.error)
-  // This line of code will only be executed once when your extension is activated
+  vscode.window.showInformationMessage("Unix to UTC Extension Activated");
   console.log('Congratulations, your extension "unix-to-utc" is now active!');
   console.log("current path is: ", __dirname);
 
@@ -63,8 +85,8 @@ export function activate(context: vscode.ExtensionContext) {
       }
     }
   );
-  console.log("API started...http://127.0.0.1:8001");
-
+  console.log("API started at http://127.0.0.1:8001");
+  vscode.window.showInformationMessage("API started at http://127.0.0.1:8001");
   convertTime(context);
   getUTCTime(context);
   getUnixTime(context);
@@ -73,7 +95,6 @@ export function activate(context: vscode.ExtensionContext) {
 // This method is called when your extension is deactivated
 export function deactivate() {
   console.log("deactivated");
-  if (api_process) {
-    api_process.kill();
-  }
+  api_process.kill();
+  vscode.window.showInformationMessage("Deactivated Unix to UTC");
 }
