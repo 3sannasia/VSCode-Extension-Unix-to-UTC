@@ -7,14 +7,41 @@ import path from "path";
 
 let api_process: ChildProcess;
 
+function showCopyWindow(text: string) {
+  vscode.window.showInformationMessage(text, "Copy").then((value) => {
+    if (value === "Copy") {
+      vscode.env.clipboard.writeText(text);
+      vscode.window.showInformationMessage(`Copied ${text}`);
+    }
+  });
+}
+
 async function convertTime(context: vscode.ExtensionContext) {
   let convertTimeCommand = vscode.commands.registerCommand(
     "unix-to-utc.convertTime",
-    () => {
-      vscode.window.showInformationMessage("convertTime activated!");
+    async () => {
+      const editor = vscode.window.activeTextEditor;
+
+      if (editor) {
+        const document = editor.document;
+        const selection = editor.selection;
+
+        const text = document.getText(selection);
+        const response = await fetch(
+          "http://127.0.0.1:8001/convert/" + text.toString()
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data: any = await response.json();
+        const converted_time = data["date"];
+        showCopyWindow(converted_time.toString());
+        editor.edit((editBuilder) => {
+          editBuilder.replace(selection, converted_time);
+        });
+      }
     }
   );
-
   context.subscriptions.push(convertTimeCommand);
 }
 
@@ -30,12 +57,7 @@ async function getUTCTime(context: vscode.ExtensionContext) {
       }
       const data: any = await response.json();
       const cur_utc = data["date"];
-      vscode.window.showInformationMessage(cur_utc, "Copy").then((value) => {
-        if (value === "Copy") {
-          vscode.env.clipboard.writeText(cur_utc);
-          vscode.window.showInformationMessage(`Copied ${cur_utc}`);
-        }
-      });
+      showCopyWindow(cur_utc.toString());
     }
   );
 
@@ -54,12 +76,7 @@ async function getUnixTime(context: vscode.ExtensionContext) {
       }
       const data: any = await response.json();
       const cur_unix = data["date"].toString();
-      vscode.window.showInformationMessage(cur_unix, "Copy").then((value) => {
-        if (value === "Copy") {
-          vscode.env.clipboard.writeText(cur_unix);
-          vscode.window.showInformationMessage(`Copied ${cur_unix}`);
-        }
-      });
+      showCopyWindow(cur_unix.toString());
     }
   );
   context.subscriptions.push(getUnixTimeCommand);

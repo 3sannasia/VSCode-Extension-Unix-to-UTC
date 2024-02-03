@@ -15,7 +15,7 @@ def test_get_current_unix_timestamp():
 
 
 def test_get_current_timestamp():
-    response = client.get("/current_timestamp")
+    response = client.get("/current_utc_timestamp")
     assert response.status_code == 200
     assert type(response.json()["date"]) == str
 
@@ -30,13 +30,38 @@ def test_convert_with_50():
     response = client.get("/convert/50")
     assert response.status_code == 200
     assert response.json() == {"date": "1970-01-01T00:00:50+00:00"}
+    
+def test_convert_with_50():
+    response = client.get("/convert/50")
+    assert response.status_code == 200
+    assert response.json() == {"date": "1970-01-01T00:00:50+00:00"}
 
 
 def test_convert_with_00009():
     response = client.get("/convert/00009")
     assert response.status_code == 200
     assert response.json() == {"date": "1970-01-01T00:00:09+00:00"}
-
+    
+    
+def test_convert_with_unix_float():
+    response = client.get("/convert/1706931638.504273")
+    assert response.status_code == 200
+    assert response.json() == {"date": "2024-02-03T03:40:38.504273+00:00"}
+    
+def test_convert_with_utc_float():
+    response = client.get("/convert/2024-02-03T03:40:38.504273+00:00")
+    assert response.status_code == 200
+    assert response.json() == {"date": 1706931638.504273}
+    
+    
+def test_convert_with_utc_float_bounce():
+    response = client.get("/convert/2024-02-03T03:40:38.504273+00:00")
+    assert response.status_code == 200
+    assert response.json() == {"date": 1706931638.504273}
+    response2 = client.get("/convert/" + str(response.json()["date"]))
+    assert response2.status_code == 200
+    assert response2.json() == {"date": "2024-02-03T03:40:38.504273+00:00"}
+    
 
 def test_convert_with_string():
     response = client.get("/convert/1970-01-01T00:00:00+00:00")
