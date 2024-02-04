@@ -3,7 +3,7 @@ import pytest
 from datetime import datetime
 from fastapi.testclient import TestClient
 
-import datetime_api
+from dist import datetime_api
 
 client = TestClient(datetime_api.app)
 

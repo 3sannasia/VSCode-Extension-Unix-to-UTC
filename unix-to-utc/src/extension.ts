@@ -25,10 +25,12 @@ async function convertTime(context: vscode.ExtensionContext) {
       if (editor) {
         const document = editor.document;
         const selection = editor.selection;
-
+        // Won't convert unix back to iso
         const text = document.getText(selection);
+        console.log(text);
+        console.log("http://127.0.0.1:8001/convert/" + text.toString()) + "/";
         const response = await fetch(
-          "http://127.0.0.1:8001/convert/" + text.toString()
+          `http://127.0.0.1:8001/convert/${text.toString()}`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -36,9 +38,9 @@ async function convertTime(context: vscode.ExtensionContext) {
         const data: any = await response.json();
         const converted_time = data["date"];
         showCopyWindow(converted_time.toString());
-        editor.edit((editBuilder) => {
-          editBuilder.replace(selection, converted_time);
-        });
+        // editor.edit((editBuilder) => {
+        //   editBuilder.replace(selection, converted_time.toString());
+        // });
       }
     }
   );
@@ -82,12 +84,8 @@ async function getUnixTime(context: vscode.ExtensionContext) {
   context.subscriptions.push(getUnixTimeCommand);
 }
 
-// This method is called when your extension is activated
 export function activate(context: vscode.ExtensionContext) {
-  vscode.window.showInformationMessage("Unix to UTC Extension Activated");
-  console.log('Congratulations, your extension "unix-to-utc" is now active!');
-  console.log("current path is: ", __dirname);
-
+  console.log('Extension "unix-to-utc" is now active!');
   api_process = exec(
     "python3 " + path.join(__dirname, "datetime_api.py"),
     (error, stderr) => {
@@ -103,15 +101,12 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
   console.log("API started at http://127.0.0.1:8001");
-  vscode.window.showInformationMessage("API started at http://127.0.0.1:8001");
   convertTime(context);
   getUTCTime(context);
   getUnixTime(context);
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {
-  console.log("deactivated");
-  api_process.kill();
-  vscode.window.showInformationMessage("Deactivated Unix to UTC");
+  console.log("Deactivated extension. Killing API process.");
+  api_process.kill("SIGINT");
 }

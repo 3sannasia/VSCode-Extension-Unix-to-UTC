@@ -1,2 +1,2 @@
 #!/bin/sh
-python3 datetime_api.py
+python3 ../dist/datetime_api.py
