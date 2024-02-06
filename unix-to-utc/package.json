@@ -37,11 +37,11 @@
       },
       {
         "command": "unix-to-utc.getUTCTime",
-        "title": "UTC Time"
+        "title": "Current UTC Time"
       },
       {
         "command": "unix-to-utc.getUnixTime",
-        "title": "Unix Time"
+        "title": "Current Unix Time"
       }
     ]
   },
