@@ -1,6 +1,0 @@
-Datetime
-FastAPI
-uvicorn
-pytest
-starlette
-httpx
