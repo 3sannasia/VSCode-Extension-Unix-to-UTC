@@ -11,24 +11,34 @@
 
 <div align="center">
 
+<br>
+
 [![license](https://img.shields.io/github/license/dec0dOS/amazing-github-template.svg?style=flat-square)](LICENSE)
 
 </div>
 
 ## Features
 
-- Convert unix timestamp to UTC ISO 8601 date and time format
+- Convert Unix timestamps to UTC ISO 8601 timestampts
   ![]()
 
-![]()
+- Convert ISO 8601 timestamps to Unix timestamps
+  ![]()
 
-![]()
+- Get current Unix timestamp
+  ![]()
+
+- Get current UTC timestamp
+  ![]()
 
 ## Usage
 
 ### Local Development
 
--
+- clone repo
+- cd src
+- pip3 install -r requirements.txt
+- See vsc-extension-quickstart.md
 
 ## FAQ
 
@@ -38,7 +48,7 @@ Unix time is a date and time representation widely used in computing. It measure
 
 - Ex: 1707228725.163333
 
-### What is a ISO 8601 format timestamp?
+### What is an ISO 8601 format timestamp?
 
 ISO 8601 is an international standard covering the worldwide exchange and communication of date and time-related data. I chose this format for its precision and ability to represent UTC offset. It has strong use cases in worldwide communication and time-synchronization.
 
