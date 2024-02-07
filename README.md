@@ -3,6 +3,7 @@
 <h1 align="center">Unix to UTC</h1>
 
 <p align="center"> Allows developers to easily read unix timestamps in VSCode</p>
+<p align = "center"r> Version 2.0.0 </p>
 <p align="center">
   <a href="#features">Features</a> •
   <a href="#usage">Usage</a> •
@@ -53,6 +54,8 @@ The ISO 8601 includes the year (YYYY), month (MM), day (DD), followed by the let
 
 ## Future Plan
 
+- Use the hover api to see time conversions on hover
+  - Eliminates multiple command clicks
 - Add features for the terminal
   - Currently commands only available in the editor
   - Waiting on the development of an upgraded [VSCode Terminal API](https://github.com/microsoft/vscode/issues/188173) to allow to get the user's terminal selection
