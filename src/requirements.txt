@@ -3,4 +3,3 @@ FastAPI
 uvicorn
 pytest
 starlette
-httpx
