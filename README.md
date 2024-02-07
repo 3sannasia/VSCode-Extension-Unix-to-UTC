@@ -3,7 +3,7 @@
 <h1 align="center">Unix to UTC</h1>
 
 <p align="center"> Allows developers to easily read unix timestamps in VSCode</p>
-<p align = "center"r> Version 2.0.0 </p>
+<p align = "center"r> Version 2.0.1 </p>
 <p align="center">
   <a href="#features">Features</a> •
   <a href="#usage">Usage</a> •
