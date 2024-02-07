@@ -3,11 +3,12 @@
 <h1 align="center">Unix to UTC</h1>
 
 <p align="center"> Allows developers to easily read unix timestamps in VSCode</p>
-<p align = "center"r> Version 2.0.0 </p>
+<p align = "center"r> Version 2.0.2 </p>
 <p align="center">
   <a href="#features">Features</a> •
-  <a href="#usage">Usage</a> •
-  <a href="#FAQ">FAQ</a>
+    <a href="#requirements">Requirements</a> •
+  <a href="#faq">FAQ</a>
+
 </p>
 
 <div align="center">
@@ -43,7 +44,7 @@
 - Uses updated timezone accurate Python Datetime functions
   - [It's time for a change, datetime.utcnow is now depreciated](https://blog.miguelgrinberg.com/post/it-s-time-for-a-change-datetime-utcnow-is-now-deprecated)
 
-## Library Requirements
+## Requirements
 
 - uvicorn: ^0.24.0
   - `pip install uvicorn`
