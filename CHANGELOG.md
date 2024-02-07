@@ -1,9 +1,14 @@
 # Change Log
 
-All notable changes to the "unix-to-utc" extension will be documented in this file.
+All notable changes to the Unix to UTC extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## Version 2.0
 
-## [Unreleased]
+- Current release
+- Switched to using FastAPI and the Python Datetime library for time conversions
+- Added more support for accepted UTC and unix timestamp inputs
+- Updated depreciated Datetime functions
 
-- Initial release
+## Version 1.0
+
+- Initial beta release

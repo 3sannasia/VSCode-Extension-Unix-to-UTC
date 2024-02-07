@@ -46,13 +46,8 @@ async def convert(date, response: Response):
     
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--test", action="store_true")
-    args = parser.parse_args()
-    reload = args.test
-
     import uvicorn
-    uvicorn.run("datetime_api:app", port=8001, reload=reload)
+    uvicorn.run("datetime_api:app", port=8001)
     
     
 

@@ -2,7 +2,7 @@
   "name": "unix-to-utc",
   "displayName": "Unix to UTC",
   "description": "Allows developers to easily read unix timestamps in code by displaying human-readable UTC time inline",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "engines": {
     "vscode": "^1.85.0"
   },
