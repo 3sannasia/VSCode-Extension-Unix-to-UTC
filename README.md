@@ -36,6 +36,18 @@
 
   ![cur utc gif](https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/a47043f5-8e9d-4223-9a5d-3867751a9f4a)
 
+- Uses updated timezone accurate Python Datetime functions
+  - [It's time for a change, datetime.utcnow is now depreciated](https://blog.miguelgrinberg.com/post/it-s-time-for-a-change-datetime-utcnow-is-now-deprecated)
+
+## Library Requirements
+
+- uvicorn: ^0.24.0
+  - `pip install uvicorn`
+- starlette: ^0.27.0
+  - `pip install starlette`
+- fastapi: ^0.104.1
+  - `pip install fastapi`
+
 ## FAQ
 
 ### What is a Unix timestamp?
