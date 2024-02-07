@@ -28,9 +28,11 @@
   ![utc->unix gif](https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/1e44ea04-bf6c-4099-af0b-2122801e726e)
 
 - Get current Unix timestamp
+
   ![cur unix gif](https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/82353f24-7284-466d-afac-0c76e294fa89)
 
 - Get current UTC timestamp
+
   ![cur utc gif](https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/a47043f5-8e9d-4223-9a5d-3867751a9f4a)
 
 ## FAQ
