@@ -1,5 +1,7 @@
 out
-dist
 node_modules
 .vscode-test/
 *.vsix
+.pytest_cache/
+__pycache__/
+.DS_Store

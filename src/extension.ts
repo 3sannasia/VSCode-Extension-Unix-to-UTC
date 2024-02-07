@@ -1,68 +1,25 @@
-"use strict";
-
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
+import { exec, ChildProcess } from "node:child_process";
+require("node-fetch");
+import path from "path";
 
-// Helper functions
-function DatetimeToDate(pythonDateTimeString: string): Date {
-  // Split the string into date and time parts
-  const [datePart, timePart] = pythonDateTimeString.split(" ");
+let api_process: ChildProcess;
 
-  // Split the date part into year, month, and day components
-  const [year, month, day] = datePart.split("-").map(Number);
-
-  // Split the time part into hour, minute, and second components
-  const [hour, minute, second] = timePart.split(":").map(Number);
-
-  // Create a new UTC Date object using the components
-  // Note: Months in JavaScript's Date are 0-indexed, so we need to subtract 1 from the month value.
-  const date = new Date(Date.UTC(year, month - 1, day, hour, minute, second));
-
-  return date;
+function showCopyWindow(text: string) {
+  vscode.window.showInformationMessage(text, "Copy").then((value) => {
+    if (value === "Copy") {
+      vscode.env.clipboard.writeText(text);
+      vscode.window.showInformationMessage(`Copied ${text}`);
+    }
+  });
 }
 
-// Helper function to convert Python datetime object to Unix time
-function DateToUnix(dateTime: Date): number {
-  // Get the number of milliseconds since January 1, 1970 (Unix epoch time)
-  const unixTimestamp = dateTime.getTime();
-
-  // Convert milliseconds to seconds and return the Unix timestamp as a number
-  return unixTimestamp / 1000;
-}
-
-// Helper function to convert Unix time to Python datetime object
-function UnixToDatetime(unixTime: number): string {
-  // Convert Unix time (in seconds) to milliseconds by multiplying with 1000
-  const milliseconds = unixTime * 1000;
-
-  // Create a new Date object using the milliseconds
-  const date = new Date(milliseconds);
-
-  // Get individual components of the date
-  const year = date.getUTCFullYear();
-  const month = date.getUTCMonth() + 1; // Months are zero-based, so we add 1
-  const day = date.getUTCDate();
-  const hour = date.getUTCHours();
-  const minute = date.getUTCMinutes();
-  const second = date.getUTCSeconds();
-
-  // Format the date as a string in the Python datetime object format
-  const pythonDateTimeFormat = `"${year}-${padZero(month)}-${padZero(
-    day
-  )} ${padZero(hour)}:${padZero(minute)}:${padZero(second)}"`;
-
-  return pythonDateTimeFormat;
-}
-
-function padZero(num: number): string {
-  return num.toString().padStart(2, "0");
-}
-
-function replaceUnixWithUTC(context: vscode.ExtensionContext): void {
-  const replace_unix = vscode.commands.registerCommand(
-    "unix-to-datetime-to-epoch.replace_unix",
-    () => {
+async function convertTime(context: vscode.ExtensionContext) {
+  let convertTimeCommand = vscode.commands.registerCommand(
+    "unix-to-utc.convertTime",
+    async () => {
       const editor = vscode.window.activeTextEditor;
 
       if (editor) {
@@ -70,157 +27,86 @@ function replaceUnixWithUTC(context: vscode.ExtensionContext): void {
         const selection = editor.selection;
 
         const text = document.getText(selection);
-        const unix_float = parseFloat(text);
-
-        if (
-          isNaN(unix_float) ||
-          unix_float < 0 ||
-          selection.isEmpty ||
-          !selection.isSingleLine
-        ) {
-          vscode.window.showInformationMessage(
-            "Please select a valid unix timestamp!"
-          );
-          return;
+        console.log(text);
+        console.log("http://127.0.0.1:8001/convert/" + text.toString()) + "/";
+        const response = await fetch(
+          `http://127.0.0.1:8001/convert/${text.toString()}`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
-        const datetime = UnixToDatetime(unix_float);
-        editor.edit((editBuilder) => {
-          editBuilder.replace(selection, datetime);
-        });
+        const data: any = await response.json();
+        const converted_time = data["date"];
+        showCopyWindow(converted_time.toString());
+        // editor.edit((editBuilder) => {
+        //   editBuilder.replace(selection, converted_time.toString());
+        // });
       }
     }
   );
-
-  context.subscriptions.push(replace_unix);
+  context.subscriptions.push(convertTimeCommand);
 }
 
-function showDatetimeFromUnix(context: vscode.ExtensionContext): void {
-  const convert = vscode.commands.registerCommand(
-    "unix-to-utc.show_datetime",
-    () => {
-      const editor = vscode.window.activeTextEditor;
-
-      if (editor) {
-        const document = editor.document;
-        const selection = editor.selection;
-
-        const text = document.getText(selection);
-        const unix_float = parseFloat(text);
-
-        if (
-          isNaN(unix_float) ||
-          unix_float < 0 ||
-          selection.isEmpty ||
-          !selection.isSingleLine
-        ) {
-          vscode.window.showInformationMessage(
-            "Please select a valid unix timestamp!"
-          );
-          return;
-        }
-
-        const datetime = UnixToDatetime(unix_float);
-
-        vscode.window.showInformationMessage(datetime, "Copy").then((value) => {
-          if (value === "Copy") {
-            vscode.env.clipboard.writeText(datetime);
-            vscode.window.showInformationMessage(`Copied ${datetime}`);
-          }
-        });
+async function getUTCTime(context: vscode.ExtensionContext) {
+  let getUTCTimeCommand = vscode.commands.registerCommand(
+    "unix-to-utc.getUTCTime",
+    async () => {
+      const response = await fetch(
+        "http://127.0.0.1:8001/current_utc_timestamp"
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
+      const data: any = await response.json();
+      const cur_utc = data["date"];
+      showCopyWindow(cur_utc.toString());
     }
   );
-  context.subscriptions.push(convert);
+
+  context.subscriptions.push(getUTCTimeCommand);
 }
 
-function replaceDatetimeWithUnix(context: vscode.ExtensionContext) {
-  const replace_datetime = vscode.commands.registerCommand(
-    "unix-to-datetime-to-epoch.replace_datetime",
-    () => {
-      const editor = vscode.window.activeTextEditor;
-
-      if (editor) {
-        const document = editor.document;
-        const selection = editor.selection;
-
-        var text = document.getText(selection);
-
-        if (text.at(0) == '"' && text.at(text.length - 1) == '"') {
-          text = text.slice(1, text.length - 1);
-        }
-
-        const date = DatetimeToDate(text);
-        const unix = DateToUnix(date);
-
-        if (isNaN(unix)) {
-          vscode.window.showInformationMessage(
-            "Please select a valid datetime!"
-          );
-          return;
-        }
-
-        editor.edit((editBuilder) => {
-          editBuilder.replace(selection, unix.toString());
-        });
+async function getUnixTime(context: vscode.ExtensionContext) {
+  let getUnixTimeCommand = vscode.commands.registerCommand(
+    "unix-to-utc.getUnixTime",
+    async () => {
+      const response = await fetch(
+        "http://127.0.0.1:8001/current_unix_timestamp"
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
+      const data: any = await response.json();
+      const cur_unix = data["date"].toString();
+      showCopyWindow(cur_unix.toString());
     }
   );
-  context.subscriptions.push(replace_datetime);
+  context.subscriptions.push(getUnixTimeCommand);
 }
 
-function showUnixFromUTC(context: vscode.ExtensionContext) {
-  const convert = vscode.commands.registerCommand(
-    "unix-to-datetime-to-epoch.show_unix",
-    () => {
-      const editor = vscode.window.activeTextEditor;
-
-      if (editor) {
-        const document = editor.document;
-        const selection = editor.selection;
-
-        var text = document.getText(selection);
-
-        if (text.at(0) == '"' && text.at(text.length - 1) == '"') {
-          text = text.slice(1, text.length - 1);
-        }
-
-        const date = DatetimeToDate(text);
-        const unix = DateToUnix(date);
-
-        if (isNaN(unix)) {
-          vscode.window.showInformationMessage(
-            "Please select a valid datetime!"
-          );
-          return;
-        }
-        vscode.window
-          .showInformationMessage(unix.toString(), "Copy")
-          .then((value) => {
-            if (value === "Copy") {
-              vscode.env.clipboard.writeText(unix.toString());
-              vscode.window.showInformationMessage(`Copied ${unix}`);
-            }
-          });
-      }
-    }
-  );
-  context.subscriptions.push(convert);
-}
-
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  vscode.window.showInformationMessage("Unix to Datetime to Epoch");
+  vscode.window.showInformationMessage("Unix to UTC is now active");
+  api_process = exec(
+    "python3 " + path.join(__dirname, "datetime_api.py"),
+    (error, stderr) => {
+      if (error) {
+        console.error(`Error executing script: ${error.message}`);
+        return;
+      }
 
-  // Commands to convert between Unix time and Python datetime objects
-  showUnixFromUTC(context);
-  showDatetimeFromUnix(context);
-
-  replaceUnixWithUTC(context);
-  replaceDatetimeWithUnix(context);
+      if (stderr) {
+        console.error(`Script execution resulted in an error: ${stderr}`);
+        return;
+      }
+    }
+  );
+  console.log("API started at http://127.0.0.1:8001");
+  convertTime(context);
+  getUTCTime(context);
+  getUnixTime(context);
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {
-  vscode.window.showInformationMessage("Deactivated");
+  console.log("Deactivated extension. Killing API process.");
+  api_process.kill("SIGINT");
 }

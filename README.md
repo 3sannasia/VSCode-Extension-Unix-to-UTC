@@ -1,61 +1,63 @@
-# unix-to-utc README
+<p align="center"><img src="https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/94f63320-b1dd-48a8-9514-359b61b629b7" alt="logo" width="250px" /></p>
 
-Making time conversion easier and lightweight. The main focus for this extension is for people using Python datetime objects but need the reliability of unix epoch time. I want to make reading unix timestamps easier and lessen time-based project headaches.
+<h1 align="center">Unix to UTC</h1>
+
+<p align="center"> Allows developers to easily read unix timestamps in VSCode</p>
+<p align="center">
+  <a href="#features">Features</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#FAQ">FAQ</a>
+</p>
+
+<div align="center">
+
+<br>
+
+[![license](https://img.shields.io/github/license/dec0dOS/amazing-github-template.svg?style=flat-square)](LICENSE)
+
+</div>
 
 ## Features
 
-1. Replace unix timestamps with the datetime string version
+- Convert Unix timestamps to UTC ISO 8601 timestamps
+  ![]()
 
-   - "(Replace) Unix Time with Datetime" Command
+- Convert ISO 8601 timestamps to Unix timestamps
+  ![]()
 
-2. Replace datetime timestamps directly (with or without string quotes) as unix timestamps
+- Get current Unix timestamp
+  ![]()
 
-   - "(Replace) Datetime with Unix Time" Command
+- Get current UTC timestamp
+  ![]()
 
-3. Select a unix timestamp and see a copyable datetime message
+## FAQ
 
-   - "(Window) Unix Time to Datetime" Command
-     ![Unix-to-Datetime](images/Screenshot%202023-07-30%20at%208.58.06%20PM.png)
+### What is a Unix timestamp?
 
-4. Select a Python Datetime string and see a copyable unix message
+Unix time is a date and time representation widely used in computing. It measures time by the number of non-leap seconds that have elapsed since 00:00:00 UTC on 1 January 1970, the Unix epoch.
 
-   - "(Window) Show Datetime to Unix Time
-     ![Datetime-to-Unix](images/Screenshot%202023-07-30%20at%208.58.27%20PM.png)
+`Ex: 1707228725.163333`
 
-## Future ideas: 
-   - Terminal Option to convert printed unix times
-   - Flesh out Python Datetime and FastAPI for wider time input support
-   - Select unix time text to see datetime in a hover
+### What is an ISO 8601 format timestamp and why use it?
 
-## Requirements
+ISO 8601 is an international standard covering the worldwide exchange and communication of date and time-related data. I chose this format for its precision and ability to represent UTC offset. It has strong use cases in worldwide communication and time-synchronization.
 
-Goal is to work on any file
+`Ex: 2024-02-06T14:12:05.163333+00:00`
 
-## Extension Settings
+The ISO 8601 includes the year (YYYY), month (MM), day (DD), followed by the letter 'T' to separate the date from the time, and then the hours (HH), minutes (MM), seconds (SS), and fractional seconds (SSSSSS) with a decimal point. The '+00:00' at the end represents the UTC offset, indicating that the time is in Coordinated Universal Time (UTC) with zero offset (no time zone adjustment).
 
-Must run commands using cmd(ctrl) + shift + p or and finding the command you want
+## Future Plan
 
-### 1.0.6
+- Add features for the terminal
+  - Currently commands only available in the editor
+  - Waiting on the development of an upgraded [VSCode Terminal API](https://github.com/microsoft/vscode/issues/188173) to allow to get the user's terminal selection
 
-<!--
-## Following extension guidelines
+## Usage
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension. -->
+### Local Development
 
-<!--
-- [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-- Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-- Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-- Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!** -->
+- `git clone repository_url`
+- `pip3 install -r src/requirements.txt`
+- Run `./test` to run pytests on the API
+- See [VSCode Extension Quickstart Readme](vsc-extension-quickstart.md)
