@@ -1,71 +1,47 @@
-# unix-to-utc README
+<p align="center"><img src=".github/assets/_4dd3e11b-81f6-4365-8ee0-f8887c365830.jpg" alt="logo" width="160px" /></p>
 
-This is the README for your extension "unix-to-utc". After writing up a brief description, we recommend including the following sections.
+<h1 align="center">Unix to UTC</h1>
+
+<p align="center"> Allows developers to easily read unix timestamps in VSCode</p>
+<p align="center">
+  <a href="#features">Features</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#FAQ">FAQ</a>
+</p>
+
+<div align="center">
+
+[![license](https://img.shields.io/github/license/dec0dOS/amazing-github-template.svg?style=flat-square)](LICENSE)
+
+</div>
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Convert unix timestamp to UTC ISO 8601 date and time format
+  ![]()
 
-For example if there is an image subfolder under your extension project workspace:
+![]()
 
-\!\[feature X\]\(images/feature-x.png\)
+![]()
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Usage
 
-## Requirements
+### Local Development
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+-
 
-## Extension Settings
+## FAQ
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### What is a Unix timestamp?
 
-For example:
+Unix time is a date and time representation widely used in computing. It measures time by the number of non-leap seconds that have elapsed since 00:00:00 UTC on 1 January 1970, the Unix epoch.
 
-This extension contributes the following settings:
+- Ex: 1707228725.163333
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+### What is a ISO 8601 format timestamp?
 
-## Known Issues
+ISO 8601 is an international standard covering the worldwide exchange and communication of date and time-related data. I chose this format for its precision and ability to represent UTC offset. It has strong use cases in worldwide communication and time-synchronization.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Ex: 2024-02-06T14:12:05.163333+00:00
 
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+The ISO 8601 includes the year (YYYY), month (MM), day (DD), followed by the letter 'T' to separate the date from the time, and then the hours (HH), minutes (MM), seconds (SS), and fractional seconds (SSSSSS) with a decimal point. The '+00:00' at the end represents the UTC offset, indicating that the time is in Coordinated Universal Time (UTC) with zero offset (no time zone adjustment).
