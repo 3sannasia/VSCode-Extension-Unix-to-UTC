@@ -38,13 +38,40 @@ async function convertTime(context: vscode.ExtensionContext) {
         const data: any = await response.json();
         const converted_time = data["date"];
         showCopyWindow(converted_time.toString());
-        // editor.edit((editBuilder) => {
-        //   editBuilder.replace(selection, converted_time.toString());
-        // });
       }
     }
   );
   context.subscriptions.push(convertTimeCommand);
+}
+
+async function replaceTime(context: vscode.ExtensionContext) {
+  let replaceTimeCommand = vscode.commands.registerCommand(
+    "unix-to-utc.replaceTime",
+    async () => {
+      const editor = vscode.window.activeTextEditor;
+
+      if (editor) {
+        const document = editor.document;
+        const selection = editor.selection;
+
+        const text = document.getText(selection);
+        console.log(text);
+        console.log("http://127.0.0.1:8001/convert/" + text.toString()) + "/";
+        const response = await fetch(
+          `http://127.0.0.1:8001/convert/${text.toString()}`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data: any = await response.json();
+        const converted_time = data["date"];
+        editor.edit((editBuilder) => {
+          editBuilder.replace(selection, converted_time.toString());
+        });
+      }
+    }
+  );
+  context.subscriptions.push(replaceTimeCommand);
 }
 
 async function getUTCTime(context: vscode.ExtensionContext) {
@@ -102,6 +129,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
   console.log("API started at http://127.0.0.1:8001");
   convertTime(context);
+  replaceTime(context);
   getUTCTime(context);
   getUnixTime(context);
 }

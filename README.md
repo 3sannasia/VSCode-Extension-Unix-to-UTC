@@ -28,6 +28,10 @@
 
   ![utc->unix gif](https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/1e44ea04-bf6c-4099-af0b-2122801e726e)
 
+- Replace UTC/Unix timestamps
+
+  ![replacetime](https://github.com/3sannasia/VSCode-Extension-Unix-to-UTC/assets/54860072/00228890-7931-43d7-bc9b-a09b96841719)
+
 - Get current Unix timestamp
 
   ![cur unix gif](https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/82353f24-7284-466d-afac-0c76e294fa89)
@@ -66,7 +70,7 @@ The ISO 8601 includes the year (YYYY), month (MM), day (DD), followed by the let
 
 ## Future Plan
 
-- Use the hover api to see time conversions on hover
+- Use the VSCode Hover API to see time conversions on hover
   - Eliminates multiple command clicks
 - Add features for the terminal
   - Currently commands only available in the editor
