@@ -50,6 +50,8 @@
   - `pip install uvicorn`
 - starlette: ^0.27.0
   - `pip install starlette`
+- httpx: ^0.26.0
+  - `pip install httpx`
 - fastapi: ^0.104.1
   - `pip install fastapi`
 
