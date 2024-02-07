@@ -82,5 +82,9 @@
   },
   "dependencies": {
     "node-fetch": "^2.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/3sannasia/VSCode-Extension-unix-to-utc.git"
   }
 }
