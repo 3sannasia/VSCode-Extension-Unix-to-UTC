@@ -31,14 +31,6 @@
 - Get current UTC timestamp
   ![]()
 
-## Usage
-
-### Local Development
-
-- `git clone repository_url`
-- `pip3 install -r src/requirements.txt`
-- See [VSCode Extension Quickstart Readme](vsc-extension-quickstart.md)
-
 ## FAQ
 
 ### What is a Unix timestamp?
@@ -57,5 +49,15 @@ The ISO 8601 includes the year (YYYY), month (MM), day (DD), followed by the let
 
 ## Future Plan
 
-- Add features to the terminal
+- Add features for the terminal
+  - Currently commands only available in the editor
   - Waiting on the development of an upgraded [VSCode Terminal API](https://github.com/microsoft/vscode/issues/188173) to allow to get the user's terminal selection
+
+## Usage
+
+### Local Development
+
+- `git clone repository_url`
+- `pip3 install -r src/requirements.txt`
+- Run `./test` to run pytests on the API
+- See [VSCode Extension Quickstart Readme](vsc-extension-quickstart.md)
