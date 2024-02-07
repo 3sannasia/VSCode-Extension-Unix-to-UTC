@@ -20,10 +20,13 @@
 ## Features
 
 - Convert Unix timestamps to UTC ISO 8601 timestamps
-  ![unix->utc gif](https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/453e0f4b-9521-49d8-9d99-5ded76a034a1)
+
+  ![unix->utc gif](https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/2549bce4-c4ba-4ed1-8b76-ba03f276bebf)
 
 - Convert ISO 8601 timestamps to Unix timestamps
-  ![utc->unix gif](https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/cda98700-2de1-4982-8703-875d6470b03e)
+
+  ![utc->unix gif](https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/1e44ea04-bf6c-4099-af0b-2122801e726e)
+
 - Get current Unix timestamp
   ![cur unix gif](https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/82353f24-7284-466d-afac-0c76e294fa89)
 
