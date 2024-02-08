@@ -11,7 +11,7 @@
 </div>
 <p align="center">
   <a href="#features">Features</a> •
-    <a href="#requirements">Requirements</a> •
+    <a href="#requirements">Requirements</a>  •
   <a href="#faq">FAQ</a>
 
 </p>
