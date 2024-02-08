@@ -77,7 +77,7 @@ The ISO 8601 includes the year (YYYY), month (MM), day (DD), followed by the let
   - Eliminates multiple command clicks
 - Add features for the terminal
   - Currently commands only available in the editor
-  - Waiting on the development of an upgraded [VSCode Terminal API](https://github.com/microsoft/vscode/issues/188173) to allow to get the user's terminal selection
+  - Waiting on the development of an upgraded [VSCode Terminal API](https://github.com/microsoft/vscode/issues/188173) to allow getting the user's terminal selection
 
 ## Usage
 
