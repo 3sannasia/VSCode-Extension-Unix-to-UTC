@@ -1,8 +1,8 @@
 <p align="center"><img src="https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/94f63320-b1dd-48a8-9514-359b61b629b7" alt="logo" width="250px" /></p>
 
 <h1 align="center">Unix to UTC</h1>
-
 <p align="center"> Allows developers to easily read unix timestamps in VSCode</p>
+<p align="center> [Find on VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=kashsan.unix-to-utc&ssr=false#overview)</p>
 <p align = "center"r> Version 2.0.3 </p>
 <p align="center">
   <a href="#features">Features</a> •
