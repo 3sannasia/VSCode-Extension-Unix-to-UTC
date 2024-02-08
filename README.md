@@ -4,11 +4,12 @@
 <p align="center"> Allows developers to easily read unix timestamps in VSCode</p>
 
 <p align = "center"r> Version 2.0.3 </p>
-<p align="center">
+<div style="text-align: center;">
 
 [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=kashsan.unix-to-utc&ssr=false#overview)
 
-</p>
+</div>
+
 <p align="center">
   <a href="#features">Features</a> •
     <a href="#requirements">Requirements</a>  •
