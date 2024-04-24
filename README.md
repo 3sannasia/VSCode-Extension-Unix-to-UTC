@@ -6,7 +6,7 @@
 <p align = "center"r> Version 2.0.3 </p>
 
 <p align="center">
-  <a href="https://marketplace.visualstudio.com/items?itemName=kashsan.unix-to-utc&ssr=false#overview">VSCode Marketplace</a> •
+  <a href="https://marketplace.visualstudio.com/items?itemName=kashsan.unix-to-utc&ssr=false#overview">VS Code Marketplace</a> •
   <a href="#features">Features</a> •
     <a href="#requirements">Requirements</a>  •
   <a href="#faq">FAQ</a>
