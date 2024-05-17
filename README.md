@@ -23,7 +23,7 @@
 
 ## Features
 
-- **Note:** Requires globally-installed python libraries to work
+- **Note:** Requires some globally-installed python libraries
   - See <a href="#requirements">Requirements</a>
 - Convert Unix timestamps to UTC ISO 8601 timestamps
 
@@ -51,6 +51,12 @@
 ## Requirements
 
 Must be globally installed (no venv)
+
+Quick Install
+
+######
+
+    pip3 install uvicorn && pip3 install starlette && pip3 install httpx && pip3 install fastapi
 
 - Quick Install
   - `pip3 install uvicorn && pip3 install starlette && pip3 install httpx && pip3 install fastapi`
