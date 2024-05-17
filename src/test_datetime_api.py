@@ -11,13 +11,13 @@ client = TestClient(datetime_api.app)
 def test_get_current_unix_timestamp():
     response = client.get("/current_unix_timestamp")
     assert response.status_code == 200
-    assert type(response.json()["date"]) == float
+    assert isinstance(response.json()["date"], float)
 
 
 def test_get_current_timestamp():
     response = client.get("/current_utc_timestamp")
     assert response.status_code == 200
-    assert type(response.json()["date"]) == str
+    assert isinstance(response.json()["date"], str)
 
 
 def test_convert_with_0():
@@ -31,11 +31,6 @@ def test_convert_with_50():
     assert response.status_code == 200
     assert response.json() == {"date": "1970-01-01T00:00:50+00:00"}
     
-def test_convert_with_50():
-    response = client.get("/convert/50")
-    assert response.status_code == 200
-    assert response.json() == {"date": "1970-01-01T00:00:50+00:00"}
-
 
 def test_convert_with_00009():
     response = client.get("/convert/00009")
