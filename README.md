@@ -50,7 +50,7 @@
 
 ## Requirements
 
-Must be globally installed (no venv)
+- Must be globally installed (no venv)
 
 **Quick Install**
 
