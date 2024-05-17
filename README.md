@@ -58,6 +58,31 @@ Quick Install
 
     pip3 install uvicorn && pip3 install starlette && pip3 install httpx && pip3 install fastapi
 
+uvicorn: ^0.24.0
+
+######
+
+    pip3 install uvicorn
+
+starlette: ^0.27.0
+
+######
+
+    pip3 install starlette
+
+httpx: ^0.26.0
+
+######
+
+    pip3 install httpx
+
+fastapi: ^0.104.1
+
+######
+
+    pip3 install fastapi
+
+<!--
 - Quick Install
   - `pip3 install uvicorn && pip3 install starlette && pip3 install httpx && pip3 install fastapi`
 - uvicorn: ^0.24.0
@@ -67,7 +92,7 @@ Quick Install
 - httpx: ^0.26.0
   - `pip3 install httpx`
 - fastapi: ^0.104.1
-  - `pip3 install fastapi`
+  - `pip3 install fastapi` -->
 
 ## FAQ
 
