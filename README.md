@@ -3,7 +3,7 @@
 <h1 align="center">Unix to UTC</h1>
 <p align="center"> Allows developers to easily read unix timestamps in VSCode</p>
 
-<p align = "center"r> Version 2.0.3 </p>
+<p align = "center"r> Version 2.0.4 </p>
 
 <p align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=kashsan.unix-to-utc&ssr=false#overview">VS Code Marketplace</a> •
@@ -23,6 +23,8 @@
 
 ## Features
 
+- **Note:** Requires globally-installed python libraries to work
+  - See <a href="#requirements">Requirements</a>
 - Convert Unix timestamps to UTC ISO 8601 timestamps
 
   ![unix->utc gif](https://github.com/3sannasia/VSCode-Extension-unix-to-utc/assets/54860072/2549bce4-c4ba-4ed1-8b76-ba03f276bebf)
@@ -48,16 +50,26 @@
 
 ## Requirements
 
+Must be globally installed (no venv)
+
+- Quick Install
+  - `pip3 install uvicorn && pip3 install starlette && pip3 install httpx && pip3 install fastapi`
 - uvicorn: ^0.24.0
-  - `pip install uvicorn`
+  - `pip3 install uvicorn`
 - starlette: ^0.27.0
-  - `pip install starlette`
+  - `pip3 install starlette`
 - httpx: ^0.26.0
-  - `pip install httpx`
+  - `pip3 install httpx`
 - fastapi: ^0.104.1
-  - `pip install fastapi`
+  - `pip3 install fastapi`
 
 ## FAQ
+
+### Nothing happens when running extension commands?
+
+If no notification window pops up on the bottom right of VS Code make sure you installed required python libraries in <a href="#requirements">Requirements</a>. These must be installed globally and not through a virtual environment.
+
+Since this extension uses the Python Datetime library to provide accurate timestamps with the TypeScript VS Code API, it needs libraries like FastAPI installed on your local computer.
 
 ### What is a Unix timestamp?
 
@@ -80,6 +92,7 @@ The ISO 8601 includes the year (YYYY), month (MM), day (DD), followed by the let
 - Add features for the terminal
   - Currently commands only available in the editor
   - Waiting on the development of an upgraded [VSCode Terminal API](https://github.com/microsoft/vscode/issues/188173) to allow getting the user's terminal selection
+- Enable virtual environment support for python libaries
 
 ## Usage
 
