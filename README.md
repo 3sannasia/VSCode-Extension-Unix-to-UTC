@@ -52,7 +52,7 @@
 
 Must be globally installed (no venv)
 
-Quick Install
+**Quick Install**
 
 ######
 
