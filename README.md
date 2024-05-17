@@ -23,7 +23,7 @@
 
 ## Features
 
-- **Note:** Requires some globally-installed python libraries
+- **Note:** Requires some globally installed python libraries
   - See <a href="#requirements">Requirements</a>
 - Convert Unix timestamps to UTC ISO 8601 timestamps
 
